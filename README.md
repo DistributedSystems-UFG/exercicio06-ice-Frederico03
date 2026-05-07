@@ -35,12 +35,21 @@ sudo apt-get install zeroc-ice-compilers
 ```
 wget https://repo1.maven.org/maven2/com/zeroc/ice/3.7.11/ice-3.7.11.jar
 ```
-### Compile the Client (after compiling the interface with slice2java)
+### Compile the interface with slice2java
+```
+slice2java Printer.ice
+```
+### Compile the Client and Server (after compiling the interface with slice2java)
 ```
 javac -cp ".:ice-3.7.11.jar" Client.java Demo/*.java
+javac -cp ".:ice-3.7.11.jar" Server.java PrinterI.java Demo/*.java
 ```
-### Run the client:
+### Run the server (on the server machine):
+```
+java -cp ".:ice-3.7.11.jar" Server
+```
+### Run the client (on the client machine):
 ```
 java -cp ".:ice-3.7.11.jar" Client
 ```
-### Note: configure the IP address and port appropriately
+### Note: configure the IP address and port appropriately in Client.java
